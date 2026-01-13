@@ -1,4 +1,4 @@
-{% include 'header',title="confirm.j2' %}
+{% include 'header.j2' %}
 
 <html lang=en>
 <head>
@@ -171,14 +171,14 @@
           <select id="fitness_distrib_type" name="fitness_distrib_type" 
                   class="form-control" style="width:auto"
                   onchange="fxn_fitness_distrib_type_change();">
-          %opts = {'1': 'Natural distribution (Weibull)', '0': 'All mutations equal'}
-          %for key, value in opts.iteritems():
-            %if key == fitness_distrib_type:
+{% set opts = {'1': 'Natural distribution (Weibull)', '0': 'All mutations equal'} %}
+          {% for key, value in opts.items() %}
+            {% if key == fitness_distrib_type %}
               <option selected value="{{key}}">{{value}}
-            %else:
+            {% else %}
               <option value="{{key}}">{{value}}
-            %end
-          %end
+            {% endif %}
+          {% endfor %}
           </select>
         </div>
       </div>
@@ -321,9 +321,9 @@
         <div class="col-xs-6">
           <input type="checkbox" name="combine_mutns"
                  onclick="fxn_combine_mutns()" value="on" 
-                  %if float(multiplicative_weighting) > 0:
+                  {% if float(multiplicative_weighting) > 0 %}
                     checked
-                  %end
+                  {% endif %}
           >
         </div>
       </div>
@@ -351,9 +351,9 @@
         <div class="col-xs-6">
           <input type="checkbox" name="synergistic_epistasis"
                  value="on" onclick="fxn_synergistic_epistasis()"
-                 %if synergistic_epistasis=='T':
+                 {% if synergistic_epistasis=='T' %}
                     checked
-                 %end
+                 {% endif %}
           >
         </div>
       </div>
@@ -387,9 +387,9 @@
         <div class="col-xs-6">
           <input type="checkbox" name="upload_mutations"
                  value="on" onclick="show_hide_mutation_upload_form(1)" disabled="true"
-                   %if upload_mutations=='T':
+                   {% if upload_mutations=='T' %}
                     checked
-                   %end
+                   {% endif %}
           >
         </div>
       </div>
@@ -402,9 +402,9 @@
         <div class="col-xs-6">
           <input type="checkbox" name="allow_back_mutn"
                  value="on" onclick="check_back_mutn()"
-                   %if allow_back_mutn=='T':
+                   {% if allow_back_mutn=='T' %}
                     checked
-                   %end
+                   {% endif %}
           >
         </div>
       </div>
@@ -455,9 +455,9 @@
         <div class="col-xs-6">
           <input type="checkbox" name="fitness_dependent_fertility"
                  accesskey="4" value="on"
-                 %if fitness_dependent_fertility=='T':
+                 {% if fitness_dependent_fertility=='T' %}
                     checked
-                 %end
+                 {% endif %}
           >
         </div>
       </div>
@@ -469,14 +469,14 @@
           <select id="selection_scheme" name="selection_scheme" accesskey="5"
                   class="form-control" style="width:auto" 
                   onchange="fxn_selection(this.value)">
-            %opts = {'1': 'Truncation selection', '2': 'Unrestricted probability selection', '3': 'Strict proportionality probability selection', '4': 'Partial truncation selection'}
-            %for key, value in opts.iteritems():
-              %if key == selection_scheme:
+{% set opts = {'1': 'Truncation selection', '2': 'Unrestricted probability selection', '3': 'Strict proportionality probability selection', '4': 'Partial truncation selection'} %}
+            {% for key, value in opts.items() %}
+              {% if key == selection_scheme %}
                 <option selected value="{{key}}">{{value}}
-              %else:
+              {% else %}
                 <option value="{{key}}">{{value}}
-              %end
-            %end
+              {% endif %}
+            {% endfor %}
           </select>
         </div>
       </div>
@@ -505,14 +505,14 @@
         <div class="col-xs-6">
           <select id="recombination_model" name="recombination_model" 
                   class="form-control" style="width:auto">
-                  %opts = {'1': 'Clonal reproduction', '2': 'Suppressed recombination', '3': 'Full sexual recombination'}
-                  %for key, value in opts.iteritems():
-                      %if key == recombination_model:
+{% set opts = {'1': 'Clonal reproduction', '2': 'Suppressed recombination', '3': 'Full sexual recombination'} %}
+                  {% for key, value in opts.items() %}
+                      {% if key == recombination_model %}
                           <option selected value="{{key}}">{{value}}
-                      %else:
+                      {% else %}
                           <option value="{{key}}">{{value}}
-                      %end
-                  %end
+                      {% endif %}
+                  {% endfor %}
           </select>
         </div>
        </div>       
@@ -533,9 +533,9 @@
         <div class="col-xs-6">
           <input type="checkbox" name="dynamic_linkage" accesskey="2"
                  value="on" onclick="fxn_dynamic_linkage()"
-                 %if dynamic_linkage=='T': 
+                 {% if dynamic_linkage=='T': %}
                     checked
-                 %end
+                 {% endif %}
           > 
         </div>      
       </div>
@@ -574,14 +574,14 @@
           <select id="pop_growth_model" name="pop_growth_model" accesskey="5"
                   class="form-control" style="width:auto" 
                   onchange="fxn_pop_growth_model(this.value)">
-            %opts = {'0': 'Off (fixed population size)', '1': 'Exponential growth', '2': 'Carrying capacity model'}
-            %for key, value in opts.iteritems():
-              %if key == pop_growth_model:
+{% set opts = {'0': 'Off (fixed population size)', '1': 'Exponential growth', '2': 'Carrying capacity model'} %}
+            {% for key, value in opts.items() %}
+              {% if key == pop_growth_model %}
                 <option selected value="{{key}}">{{value}}
-              %else:
+              {% else %}
                 <option value="{{key}}">{{value}}
-              %end
-            %end
+              {% endif %}
+            {% endfor %}
           </select>
         </div>
       </div>
@@ -602,9 +602,9 @@
         <div class="col-xs-6">
           <input type="checkbox" name="bottleneck_yes" value="on"
                  class="checkbox" onclick="fxn_bottleneck()" 
-              % if bottleneck_yes == 'T':
+              {% if bottleneck_yes == 'T' %}
                  CHECKED
-              %end 
+              {% endif %}
             >
         </div>
       </div>
@@ -658,9 +658,9 @@
         <div class="col-xs-6">
           <input type="checkbox" name="is_parallel" onclick="fxn_is_parallel()" 
                  value="on" 
-                 %if is_parallel=='T':
+                 {% if is_parallel=='T' %}
                     checked
-                 %end
+                 {% endif %}
           >
         </div>
       </div>
@@ -673,9 +673,9 @@
           <div class="col-xs-6">
             <input type="checkbox" name="homogenous_tribes"
                    onclick="fxn_tribes(8)" value="on" 
-                   %if homogenous_tribes=='T':
+                   {% if homogenous_tribes=='T' %}
                        checked
-                   %end
+                   {% endif %}
             >
           </div>
         </div>
@@ -696,14 +696,14 @@
           <div class="col-xs-6">
             <select class="form-control" id="migration_model" style="width:auto"
                     name="migration_model">
-                  %opts = {'1': 'Ring pass', '2': 'Stepping-stone model', '3': 'Island model'}
-                  %for key, value in opts.iteritems():
-                      %if key == migration_model:
+{% set opts = {'1': 'Ring pass', '2': 'Stepping-stone model', '3': 'Island model'} %}
+                  {% for key, value in opts.items() %}
+                      {% if key == migration_model %}
                           <option selected value="{{key}}">{{value}}
-                      %else:
+                      {% else %}
                           <option value="{{key}}">{{value}}
-                      %end
-                  %end
+                      {% endif %}
+                  {% endfor %}
               </select>
           </div>
         </div>
@@ -729,9 +729,9 @@
           <div class="col-xs-6">
             <input type="checkbox" name="tribal_competition" 
               id="tribal_competition" onchange="fxn_tribes(8)" value="on"
-              %if tribal_competition=='T':
+              {% if tribal_competition=='T' %}
                  checked
-              %end
+              {% endif %}
             >
           </div>
         </div>
@@ -765,9 +765,9 @@
             6. Fission tribe?</label>
           <div class="col-xs-6">
             <input type="checkbox" name="tribal_fission" value="on"
-              %if tribal_fission=='T':
+              {% if tribal_fission=='T' %}
                 checked
-              %end
+              {% endif %}
             >
           </div>
         </div>
@@ -804,9 +804,9 @@
         <div class="col-xs-6">
           <input type="checkbox" name="auto_malloc" value="on"
                  onclick="fxn_auto_malloc()"
-                 %if auto_malloc=='T':
+                 {% if auto_malloc=='T' %}
                     checked
-                 %end
+                 {% endif %}
           >
         </div>
       </div>
@@ -853,9 +853,9 @@
         <div class="col-xs-6">
           <input type="checkbox" name="track_all_mutn" value="on"
                  onclick="fxn_track_all_mutn()"
-                 %if tracking_threshold==1:
+                 {% if tracking_threshold==1 %}
                     checked   
-                 %end
+                 {% endif %}
           >
         </div>
       </div>
@@ -904,9 +904,9 @@
         </label>
         <div class="col-xs-6">
           <input type="checkbox" name="reseed_rng" value="on"
-            %if reseed_rng=='T':
+            {% if reseed_rng=='T' %}
                checked
-            %end 
+            {% endif %}
           >
         </div>
       </div>
@@ -918,9 +918,9 @@
           (Note: these restart files are very large ~1GB)</font></label>
         <div class="col-xs-6">
           <input type="checkbox" name="write_dump" accesskey="3" value="on"
-              %if write_dump=='T':
+              {% if write_dump=='T' %}
                  checked
-              %end
+              {% endif %}
           >
         </div>
       </div>
@@ -932,9 +932,9 @@
         <div class="col-xs-6">
           <input type="checkbox" name="restart_case" accesskey="4"
             onclick="fxn_restart_case()" value="on" 
-            %if restart_case=='T':
+            {% if restart_case=='T' %}
                 checked
-            %end
+            {% endif %}
           >
         </div>
       </div>      
@@ -965,9 +965,9 @@
             &nbsp;&nbsp;&nbsp; :: append data to previous case:</label>
           <div class="col-xs-6">
             <input type="checkbox" name="restart_append" value="on" 
-              %if restart_append=='T':
+              {% if restart_append=='T' %}
                   CHECKED
-              %end 
+              {% endif %}
             >
           </div>
         </div>
@@ -991,14 +991,14 @@
           8. Output verbosity level:</label> 
         <div class="col-xs-6">
           <select name="verbosity" class="form-control" style="width:auto" id="verbosity">
-            %opts = {'0': '0-Output only history', '1': '1-Output necessary files', '2': '2-Output everything' } 
-            %for key, value in opts.iteritems():
-                %if key == verbosity:
+{% set opts = {'0': '0-Output only history', '1': '1-Output necessary files', '2': '2-Output everything' }  %}
+            {% for key, value in opts.items() %}
+                {% if key == verbosity %}
                     <option selected value="{{key}}">{{value}}
-                %else:
+                {% else %}
                     <option value="{{key}}">{{value}}
-                %end
-            %end
+                {% endif %}
+            {% endfor %}
            </select>
           </div>
       </div>
@@ -1044,9 +1044,9 @@
           2. Include neutrals in analysis:</label>
         <div class="col-xs-6">
           <input type="checkbox" name="track_neutrals" onclick="fxn_track_neutrals()"
-            %if track_neutrals=='T':
+            {% if track_neutrals=='T' %}
             checked
-            %end
+            {% endif %}
           >
         </div>
       </div>
@@ -1078,9 +1078,9 @@
         <div class="col-xs-6">
           <input type="checkbox" name="polygenic_beneficials" 
                      title="" onclick="fxn_polygenic_beneficials()" 
-            %if polygenic_beneficials=='T':
+            {% if polygenic_beneficials=='T' %}
               checked
-            %end
+            {% endif %}
           >
         </div>
       </div>
