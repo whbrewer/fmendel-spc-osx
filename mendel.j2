@@ -1,4 +1,4 @@
-%include('header',title="confirm")
+{% include 'header',title="confirm.j2' %}
 
 <html lang=en>
 <head>
@@ -30,8 +30,8 @@
 </style>
 </head>
 
-%include('navbar')
-%include('apps/alert')
+{% include 'navbar.j2' %}
+{% include 'apps/alert.j2' %}
 <div id="memory" align="center" class="alert-info"></div>
 <div id="danger" align="center" class="alert-danger"></div>
 <div id="warning" align="center" class="alert-warning"></div>
@@ -1177,4 +1177,4 @@
   document.getElementById('migration_model').value={{migration_model}};
 </script>
 
-%include('footer')
+{% include 'footer.j2' %}
